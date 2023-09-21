@@ -1,0 +1,25 @@
+# Specifies intentionally untracked files to ignore when using Git
+# http://git-scm.com/docs/gitignore
+
+*~
+.tmp
+*.tmp
+*.tmp.*
+
+*.log
+log.txt
+npm-debug.log*
+
+/.angular
+/.idea
+/.ionic
+/.sass-cache
+/.sourcemaps
+/.versions
+/.vscode
+/coverage
+/dist
+/node_modules
+/platforms
+/plugins
+/www
