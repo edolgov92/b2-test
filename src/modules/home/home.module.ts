@@ -7,7 +7,7 @@ import { DataService } from './services';
 import { HomeEffects, homeReducer } from './state-management';
 
 @NgModule({
-  declarations: [Components.HomeLayoutComponent],
+  declarations: [Components.ConfigPanelComponent, Components.HomeLayoutComponent],
   imports: [
     EffectsModule.forFeature(HomeEffects),
     HomeRoutingModule,

@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable, takeUntil } from 'rxjs';
 import { AbstractComponent, DataDto } from '../../../../common';
 import { DataService } from '../../services';
-import { HomeActions, HomeSelectors, HomeState } from '../../state-management';
+import { HomeSelectors, HomeState } from '../../state-management';
 
 @Component({
   selector: 'hm-layout',
@@ -20,7 +20,7 @@ export class HomeLayoutComponent extends AbstractComponent {
   }
 
   ngAfterViewInit(): void {
-    this.dataService.updateConfig(2000, 15);
+    this.dataService.updateConfig(4000, 15);
 
     this.dataList$.subscribe((list) => {
       console.log(list);
