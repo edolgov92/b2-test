@@ -1,0 +1,8 @@
+.btn {
+  font-weight: 500;
+  border-radius: 1rem;
+
+  &.btn-success {
+    --bs-btn-bg: #1ba464;
+  }
+}

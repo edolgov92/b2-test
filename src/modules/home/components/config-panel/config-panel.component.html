@@ -8,52 +8,66 @@
   <div class="row">
     <div class="col-12 col-sm-6 col-xl-4">
       <div>
-        <label for="input-timer" class="form-label">Timer, ms</label>
+        <label for="input-timer" class="form-label" translate>
+          home.config_panel.controls.interval_ms.label
+        </label>
         <input
           formControlName="intervalMs"
           type="number"
           class="form-control"
           id="input-timer"
-          placeholder="Enter timer interval in ms"
           required
           [class.is-invalid]="!form.controls['intervalMs'].valid"
+          [placeholder]="'home.config_panel.controls.interval_ms.placeholder' | translate"
         />
-        <div class="invalid-feedback">Value shoud be between 1 and 1000000</div>
+        <div class="invalid-feedback" translate>home.config_panel.errors.number_limits_error</div>
       </div>
     </div>
     <div class="col-12 col-sm-6 col-xl-4">
       <div>
-        <label for="input-array-size" class="form-label">Array size</label>
+        <label for="input-array-size" class="form-label" translate>
+          home.config_panel.controls.array_size.label
+        </label>
         <input
           formControlName="arraySize"
           type="number"
           class="form-control"
           id="input-array-size"
-          placeholder="Enter array size"
           required
           [class.is-invalid]="!form.controls['arraySize'].valid"
+          [placeholder]="'home.config_panel.controls.array_size.placeholder' | translate"
         />
-        <div class="invalid-feedback">Value shoud be between 1 and 1000000</div>
+        <div class="invalid-feedback" translate>home.config_panel.errors.number_limits_error</div>
       </div>
     </div>
     <div class="col-12 col-xl-4">
       <div>
-        <label for="input-ids" class="form-label">Additional array ids</label>
+        <label for="input-ids" class="form-label" translate>
+          home.config_panel.controls.additional_ids.label
+        </label>
         <input
           formControlName="additionalIds"
           class="form-control"
           id="input-ids"
-          placeholder="Enter ids divided by comma"
           [class.is-invalid]="!form.controls['additionalIds'].valid"
+          [placeholder]="'home.config_panel.controls.additional_ids.placeholder' | translate"
         />
-        <div class="invalid-feedback">Value shoud be valid integers list divided by comma</div>
+        <div class="invalid-feedback" translate>home.config_panel.errors.additional_ids_error</div>
       </div>
     </div>
   </div>
-  <div *ngIf="formUpdated$ | async" class="d-flex justify-content-center mt-3">
-    <button type="button" class="btn btn-secondary" (click)="reset()">Cancel</button>
-    <button type="button" class="btn btn-success ms-3" [disabled]="!this.form.valid" (click)="submit()">
-      Apply
+  <div *ngIf="formUpdated$ | async" class="actions d-flex justify-content-center mt-3">
+    <button type="button" class="btn btn-secondary" (click)="reset()" translate>
+      home.config_panel.buttons.cancel
+    </button>
+    <button
+      type="button"
+      class="btn btn-success ms-3"
+      [disabled]="!this.form.valid"
+      (click)="submit()"
+      translate
+    >
+      home.config_panel.buttons.apply
     </button>
   </div>
 </form>

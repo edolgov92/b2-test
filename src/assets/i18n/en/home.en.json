@@ -1,0 +1,35 @@
+{
+  "home": {
+    "config_panel": {
+      "buttons": {
+        "apply": "Apply",
+        "cancel": "Cancel"
+      },
+      "controls": {
+        "additional_ids": {
+          "label": "Additional array ids",
+          "placeholder": "Enter ids divided by comma"
+        },
+        "array_size": {
+          "label": "Array size",
+          "placeholder": "Enter array size"
+        },
+        "interval_ms": {
+          "label": "Timer, ms",
+          "placeholder": "Enter timer interval"
+        }
+      },
+      "errors": {
+        "additional_ids_error": "Value shoud be valid integers list divided by comma",
+        "number_limits_error": "Value shoud be between 1 and 1000000"
+      }
+    },
+    "data_table": {
+      "id": "ID",
+      "int": "Int",
+      "float": "Float",
+      "color": "Color",
+      "child": "Child"
+    }
+  }
+}

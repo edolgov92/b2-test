@@ -1,0 +1,14 @@
+{
+  "app": {
+    "settings": {
+      "menu": {
+        "back": "Back",
+        "language": "Change language",
+        "tour": "Start tour"
+      }
+    },
+    "splash_screen": {
+      "title": "A Leading Liquidity & Technology Provider"
+    }
+  }
+}

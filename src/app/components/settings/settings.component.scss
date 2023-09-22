@@ -1,0 +1,18 @@
+@import '../../../theme/tools';
+
+:host {
+  display: block;
+  position: fixed;
+  top: $spacer;
+  right: $spacer;
+
+  .dropdown {
+    .btn {
+      border: none;
+
+      &.dropdown-toggle::after {
+        display: none;
+      }
+    }
+  }
+}
