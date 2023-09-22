@@ -5,13 +5,15 @@ import localeHy from '@angular/common/locales/hy';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { EffectsModule } from '@ngrx/effects';
-import { StoreModule } from '@ngrx/store';
+import { ActionReducerMap, StoreModule } from '@ngrx/store';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { ITranslationResource, MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { getCurrentLanguage, Language, LanguageInterface, LANGUAGES, SharedModule } from '../modules';
 import { AppRoutingModule } from './app-routing.module';
 import * as Components from './components';
+import * as Services from './services';
+import { AppActions, AppEffects, appReducer, AppState } from './state-management';
 
 const localesMap: Map<Language, any> = new Map([
   [Language.Armenian, localeHy],
@@ -42,11 +44,11 @@ export function createTranslateLoader(http: HttpClient) {
   imports: [
     AppRoutingModule,
     BrowserModule,
-    EffectsModule.forRoot(),
+    EffectsModule.forRoot(AppEffects),
     HttpClientModule,
     NgxWebstorageModule.forRoot(),
     SharedModule,
-    StoreModule.forRoot(),
+    StoreModule.forRoot({ app: appReducer } as ActionReducerMap<AppState, AppActions.AppActionsType>),
     TranslateModule.forRoot({
       defaultLanguage: lang,
       loader: {
@@ -56,7 +58,7 @@ export function createTranslateLoader(http: HttpClient) {
       },
     }),
   ],
-  providers: [],
+  providers: [Services.TourService],
   bootstrap: [Components.AppComponent],
 })
 export class AppModule {}

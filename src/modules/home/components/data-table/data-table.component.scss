@@ -1,4 +1,6 @@
 :host {
+  position: relative;
+
   .table-container {
     overflow-x: auto;
   }
@@ -27,5 +29,14 @@
       color: var(--bs-dark);
       font-weight: 500;
     }
+  }
+
+  .tour-area {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 270px;
+    visibility: hidden;
   }
 }

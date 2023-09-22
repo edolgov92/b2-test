@@ -1,4 +1,4 @@
-<div class="dropdown">
+<div id="tour-step-7" class="dropdown">
   <button
     class="btn dropdown-toggle"
     type="button"
@@ -26,7 +26,9 @@
           app.settings.menu.language
         </a>
       </li>
-      <li><a class="dropdown-item" href="#" translate>app.settings.menu.tour</a></li>
+      <li>
+        <a class="dropdown-item" href="#" translate (click)="startTour($event)">app.settings.menu.tour</a>
+      </li>
     </ng-template>
   </ul>
 </div>

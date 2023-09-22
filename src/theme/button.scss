@@ -3,6 +3,11 @@
   border-radius: 1rem;
 
   &.btn-success {
-    --bs-btn-bg: #1ba464;
+    color: var(--bs-white);
+    background-color: $success;
+
+    &:focus {
+      color: var(--bs-white);
+    }
   }
 }
