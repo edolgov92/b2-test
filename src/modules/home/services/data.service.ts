@@ -19,6 +19,7 @@ export class DataService {
         type: 'module',
       });
       this.worker.onmessage = ({ data }) => {
+        console.time('2');
         if (!Array.isArray(data)) {
           return;
         }
@@ -31,6 +32,7 @@ export class DataService {
             return;
           }
         }
+        console.timeEnd('2');
         this.store.dispatch(new HomeActions.SetDataListAction(dataList));
       };
       this.worker.onerror = (err) => {

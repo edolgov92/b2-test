@@ -7,7 +7,6 @@ const COLORS: string[] = [
   'rgb(240, 248, 255)', // AliceBlue
   'beige', // Beige
   'rgb(255, 228, 225)', // MistyRose
-  'rgb(255, 239, 213)', // PapayaWhip
   '#FFF8DC', // Cornsilk
   'rgb(255, 250, 205)', // LemonChiffon
   'rgba(250, 250, 210, 0.9)', // LightGoldenrodYellow
@@ -19,12 +18,20 @@ const COLORS: string[] = [
   'rgba(255, 248, 220, 0.5)', // Cornsilk
   'lavender', // Lavender
   'rgb(253, 245, 230)', // OldLace
-  'rgb(255, 240, 245)', // LavenderBlush
   '#FFEBCD', // BlanchedAlmond
 ];
+const INTEGERS: number[] = [];
+const FLOATS: number[] = [];
 
-const generatedIds = new Set<string>();
-let handle: number | undefined;
+let handle: any;
+
+let colorIndex: number = 0;
+let numberIndex: number = 0;
+
+for (let i = 0; i < 95; i++) {
+  INTEGERS.push(getRandomNumber(1, 1000));
+  FLOATS.push(parseFloat(`${getRandomNumber(1, 1000)}.${getRandomNumber(1, 100)}`));
+}
 
 addEventListener('message', ({ data }) => {
   const { arraySize, intervalMs } = data;
@@ -36,34 +43,40 @@ function startEmittingData(arraySize: number, intervalMs: number) {
     clearInterval(handle);
   }
   handle = setInterval(() => {
+    console.time('1');
     const dataArray: any[] = [];
-    const maxId: number =
-      arraySize < Number.MAX_SAFE_INTEGER / 100 ? arraySize * 100 : Number.MAX_SAFE_INTEGER;
+    let startId: number = getRandomNumber(1, 10000);
+    let idIncrement: number = getRandomNumber(1, 10);
     for (let i = 0; i < arraySize; i++) {
+      const child = { id: startId.toString(), color: COLORS[colorIndex++] };
+      startId += idIncrement;
+      if (colorIndex >= COLORS.length) {
+        colorIndex = 0;
+      }
+
       dataArray.push({
-        id: generateUniqueId(maxId),
-        int: getRandomNumber(1, 1000),
-        float: parseFloat(`${getRandomNumber(1, 1000)}.${getRandomNumber(1, 100)}`),
-        color: getRandomElementFromArray(COLORS),
-        child: { id: generateUniqueId(maxId), color: getRandomElementFromArray(COLORS) },
+        id: startId.toString(),
+        int: INTEGERS[numberIndex],
+        float: FLOATS[numberIndex],
+        color: COLORS[colorIndex++],
+        child,
       });
+      startId += idIncrement;
+      numberIndex++;
+      if (colorIndex >= COLORS.length) {
+        colorIndex = 0;
+      }
+      if (numberIndex >= INTEGERS.length) {
+        numberIndex = 0;
+      }
     }
-    generatedIds.clear();
+    console.timeEnd('1');
     postMessage(dataArray);
   }, intervalMs) as unknown as number;
 }
 
 function getRandomNumber(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function generateUniqueId(maxId: number): string {
-  let id: string;
-  do {
-    id = getRandomNumber(1, maxId).toString();
-  } while (generatedIds.has(id));
-  generatedIds.add(id);
-  return id;
 }
 
 function getRandomElementFromArray<T = any>(items: T[]): T {

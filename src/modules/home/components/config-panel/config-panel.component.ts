@@ -39,8 +39,8 @@ export class ConfigPanelComponent extends AbstractComponent {
 
     this.form = formBuilder.group({
       additionalIds: [null, [idsListValidator()]],
-      arraySize: [null, [Validators.required, Validators.min(1), Validators.max(1000000)]],
-      intervalMs: [null, [Validators.required, Validators.min(1), Validators.max(1000000)]],
+      arraySize: [null, [Validators.required, Validators.min(1), Validators.max(100000)]],
+      intervalMs: [null, [Validators.required, Validators.min(1), Validators.max(100000)]],
     });
 
     this.setStoredFormValues(false);

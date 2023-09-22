@@ -3,7 +3,7 @@ import { HomeActions } from './home.actions';
 
 const initialState: HomeStateInterface = {
   additionalIds: [],
-  dataConfig: { arraySize: 100, intervalMs: 1000 },
+  dataConfig: { arraySize: 1000, intervalMs: 300 },
   dataList: [],
 };
 

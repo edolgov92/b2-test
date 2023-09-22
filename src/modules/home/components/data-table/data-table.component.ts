@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, takeUntil, throttleTime } from 'rxjs';
+import { distinctUntilChanged, Observable, takeUntil, throttleTime } from 'rxjs';
 import { AbstractComponent, DataDto } from '../../../shared';
 import { HomeSelectors, HomeState } from '../../state-management';
 
@@ -16,7 +16,7 @@ export class DataTableComponent extends AbstractComponent implements OnInit {
     .pipe(takeUntil(this.destroyed$));
   dataList$: Observable<DataDto[]> = this.store
     .select(HomeSelectors.GetDataListSelector)
-    .pipe(takeUntil(this.destroyed$), throttleTime(100));
+    .pipe(takeUntil(this.destroyed$), throttleTime(100), distinctUntilChanged());
 
   additionalIds: string[] = [];
 
