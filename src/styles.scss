@@ -1,1 +1,52 @@
 @import 'node_modules/bootstrap/scss/bootstrap.scss';
+
+/* cyrillic */
+@font-face {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 200;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('/assets/fonts/nunito-sans/200.woff2') format('woff2');
+}
+
+/* cyrillic */
+@font-face {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 300;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('/assets/fonts/nunito-sans/300.woff2') format('woff2');
+}
+
+/* cyrillic */
+@font-face {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('/assets/fonts/nunito-sans/400.woff2') format('woff2');
+}
+
+/* cyrillic */
+@font-face {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('/assets/fonts/nunito-sans/500.woff2') format('woff2');
+}
+
+body {
+  background: #6441a5; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2a0845, #6441a5); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #2a0845,
+    #6441a5
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  font-family: 'Nunito Sans', monospace, sans-serif;
+}

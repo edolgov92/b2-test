@@ -1,0 +1,67 @@
+@import 'node_modules/bootstrap/scss/functions';
+@import 'node_modules/bootstrap/scss/variables';
+@import 'node_modules/bootstrap/scss/mixins';
+
+@mixin absolute-full {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+@mixin fixed-full {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+@mixin rotate($degree, $originX: center, $originY: center) {
+  -webkit-transform: rotate($degree);
+  -moz-transform: rotate($degree);
+  -ms-transform: rotate($degree);
+  -o-transform: rotate($degree);
+  transform: rotate($degree);
+  -webkit-transform-origin: $originX $originY;
+  -moz-transform-origin: $originX $originY;
+  -ms-transform-origin: $originX $originY;
+  -o-transform-origin: $originX $originY;
+  transform-origin: $originX $originY;
+}
+
+@mixin flex-row-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-row-center-horizontal {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin flex-row-center-vertical {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flex-column-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-column-center-horizontal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@mixin flex-column-center-vertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

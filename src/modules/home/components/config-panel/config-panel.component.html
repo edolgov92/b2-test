@@ -1,0 +1,61 @@
+<div class="container mb-4">
+  <form
+    class="needs-validation"
+    novalidate
+    [class.was-validated]="formWasValidated$ | async"
+    [formGroup]="form"
+    (ngSubmit)="submit()"
+  >
+    <div class="row">
+      <div class="col-12 col-sm-6 col-xl-4">
+        <div>
+          <label for="input-timer" class="form-label">Timer, ms</label>
+          <input
+            formControlName="intervalMs"
+            type="number"
+            class="form-control"
+            id="input-timer"
+            placeholder="Enter timer interval in ms"
+            required
+            [class.is-invalid]="!form.controls['intervalMs'].valid"
+          />
+          <div class="invalid-feedback">Value shoud be between 1 and 1000000</div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-xl-4">
+        <div>
+          <label for="input-array-size" class="form-label">Array size</label>
+          <input
+            formControlName="arraySize"
+            type="number"
+            class="form-control"
+            id="input-array-size"
+            placeholder="Enter array size"
+            required
+            [class.is-invalid]="!form.controls['arraySize'].valid"
+          />
+          <div class="invalid-feedback">Value shoud be between 1 and 1000000</div>
+        </div>
+      </div>
+      <div class="col-12 col-xl-4">
+        <div>
+          <label for="input-ids" class="form-label">Additional array ids</label>
+          <input
+            formControlName="additionalIds"
+            class="form-control"
+            id="input-ids"
+            placeholder="Enter ids divided by comma"
+            [class.is-invalid]="!form.controls['additionalIds'].valid"
+          />
+          <div class="invalid-feedback">Value shoud be valid integers list divided by comma</div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="formUpdated$ | async" class="d-flex justify-content-center mt-3">
+      <button type="button" class="btn btn-secondary" (click)="reset()">Cancel</button>
+      <button type="button" class="btn btn-success ms-3" [disabled]="!this.form.valid" (click)="submit()">
+        Apply
+      </button>
+    </div>
+  </form>
+</div>

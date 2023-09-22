@@ -1,0 +1,8 @@
+@import '../../../../theme/tools';
+
+:host {
+  .container-fluid {
+    padding-top: $spacer * 2;
+    padding-bottom: $spacer * 2;
+  }
+}

@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { plainToInstance } from 'class-transformer';
 import { validateSync, ValidationError } from 'class-validator';
 import { DataDto } from '../../../common';
+import { DataConfig } from '../interfaces';
 import { HomeActions, HomeState } from '../state-management';
 
 const DATA_LIST_LENGTH: number = 10;
@@ -40,9 +41,9 @@ export class DataService {
     }
   }
 
-  updateConfig(interval: number, size: number) {
+  updateConfig(dataConfig: DataConfig): void {
     if (this.worker) {
-      this.worker.postMessage({ interval, size });
+      this.worker.postMessage(dataConfig);
     }
   }
 }

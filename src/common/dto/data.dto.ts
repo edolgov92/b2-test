@@ -37,7 +37,7 @@ export class DataDto {
   @Expose()
   @IsNotEmpty()
   @IsString()
-  @MinLength(4)
+  @MinLength(3)
   @MaxLength(100)
   color: string;
 
@@ -68,7 +68,7 @@ export class ChildDto {
   @Expose()
   @IsNotEmpty()
   @IsString()
-  @MinLength(4)
+  @MinLength(3)
   @MaxLength(100)
   color: string;
 

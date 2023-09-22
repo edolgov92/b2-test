@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, takeUntil } from 'rxjs';
-import { AbstractComponent, DataDto } from '../../../../common';
+import { Observable, take, takeUntil } from 'rxjs';
+import { AbstractComponent } from '../../../../common';
+import { DataConfig } from '../../interfaces';
 import { DataService } from '../../services';
 import { HomeSelectors, HomeState } from '../../state-management';
 
@@ -9,10 +10,11 @@ import { HomeSelectors, HomeState } from '../../state-management';
   selector: 'hm-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeLayoutComponent extends AbstractComponent {
-  dataList$: Observable<DataDto[]> = this.store
-    .select(HomeSelectors.GetDataListSelector)
+  dataConfig$: Observable<DataConfig> = this.store
+    .select(HomeSelectors.GetDataConfigSelector)
     .pipe(takeUntil(this.destroyed$));
 
   constructor(private dataService: DataService, private store: Store<HomeState>) {
@@ -20,10 +22,8 @@ export class HomeLayoutComponent extends AbstractComponent {
   }
 
   ngAfterViewInit(): void {
-    this.dataService.updateConfig(4000, 15);
-
-    this.dataList$.subscribe((list) => {
-      console.log(list);
+    this.dataConfig$.pipe(take(1)).subscribe((dataConfig: DataConfig) => {
+      this.dataService.updateConfig(dataConfig);
     });
   }
 }
