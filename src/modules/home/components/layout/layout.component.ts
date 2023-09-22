@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, take, takeUntil } from 'rxjs';
-import { AbstractComponent } from '../../../../common';
+import { AbstractComponent } from '../../../shared';
 import { DataConfig } from '../../interfaces';
 import { DataService } from '../../services';
 import { HomeSelectors, HomeState } from '../../state-management';

@@ -1,4 +1,4 @@
-import { DataDto } from '../../../../common';
+import { DataDto } from '../../../shared';
 import { DataConfig } from '../../interfaces';
 
 export interface HomeStateInterface {

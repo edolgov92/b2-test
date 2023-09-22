@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { BehaviorSubject, combineLatest, debounceTime, Observable, take, takeUntil } from 'rxjs';
-import { AbstractComponent } from '../../../../common';
+import { AbstractComponent } from '../../../shared';
 import { DataConfig } from '../../interfaces';
 import { HomeActions, HomeSelectors, HomeState } from '../../state-management';
 import { idsListValidator } from '../../validators';

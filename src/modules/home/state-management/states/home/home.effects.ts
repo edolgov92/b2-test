@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { tap } from 'rxjs/operators';
-import { ActionWithData, DataDto } from '../../../../../common';
+import { ActionWithData, DataDto } from '../../../../shared';
 import { DataConfig } from '../../../interfaces';
 import { DataService } from '../../../services';
 import { HomeActions } from './home.actions';

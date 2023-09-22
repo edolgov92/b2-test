@@ -1,0 +1,17 @@
+.form-control {
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+  background: transparent;
+  border-width: 2px;
+  border-color: $border-color;
+  border-radius: 1rem;
+
+  &:focus {
+    background: transparent;
+    border-color: lighten($border-color, 15%);
+  }
+}
+
+.form-label {
+  font-weight: 500;
+}

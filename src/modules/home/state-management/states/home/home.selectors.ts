@@ -1,5 +1,5 @@
 import { createSelector } from '@ngrx/store';
-import { DataDto } from '../../../../../common';
+import { DataDto } from '../../../../shared';
 import { DataConfig } from '../../../interfaces';
 import { HomeState, HomeStateInterface } from '../../interfaces';
 

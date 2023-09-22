@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, takeUntil, throttleTime } from 'rxjs';
-import { AbstractComponent, DataDto } from '../../../../common';
+import { AbstractComponent, DataDto } from '../../../shared';
 import { HomeSelectors, HomeState } from '../../state-management';
 
 @Component({

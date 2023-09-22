@@ -1,1 +1,8 @@
-<router-outlet></router-outlet>
+<app-splash-screen
+  *ngIf="(state$ | async) !== State.DisplayingApp"
+  [class.display]="(state$ | async) === State.DisplayingSplashScreen"
+  [class.hide]="(state$ | async) === State.HidingSplashScreen"
+></app-splash-screen>
+<div class="router" [class.display]="(state$ | async) === State.DisplayingApp">
+  <router-outlet></router-outlet>
+</div>

@@ -1,4 +1,4 @@
-import { ActionWithData, DataDto } from '../../../../../common';
+import { ActionWithData, DataDto } from '../../../../shared';
 import { DataConfig } from '../../../interfaces';
 
 /* tslint:disable:max-classes-per-file */

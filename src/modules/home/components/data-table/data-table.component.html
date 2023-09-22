@@ -1,55 +1,53 @@
-<div class="container">
-  <div class="table-container">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Int</th>
-          <th scope="col">Float</th>
-          <th scope="col">Color</th>
-          <th scope="col">Child</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let data of dataList$ | async; let i = index; trackBy: trackById">
-          <th scope="row">
-            <span class="label label-id">{{ additionalIds[i] || data.id }}</span>
-          </th>
-          <td>
-            <span class="label label-int">{{ data.int }}</span>
-          </td>
-          <td>
-            <span class="label label-float">{{ data.float }}</span>
-          </td>
-          <td>
-            <span class="badge label label-color" [style.background-color]="data.color">
-              {{ data.color }}
-            </span>
-          </td>
-          <td>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Color</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">
-                    <span class="label label-id">{{ data.child.id }}</span>
-                  </th>
-                  <td>
-                    <span class="badge label label-color" [style.background-color]="data.child.color">
-                      {{ data.child.color }}
-                    </span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+<div class="table-container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Int</th>
+        <th scope="col">Float</th>
+        <th scope="col">Color</th>
+        <th scope="col">Child</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of dataList$ | async; let i = index; trackBy: trackById">
+        <th scope="row">
+          <span class="label label-id">{{ additionalIds[i] || data.id }}</span>
+        </th>
+        <td>
+          <span class="label label-int">{{ data.int }}</span>
+        </td>
+        <td>
+          <span class="label label-float">{{ data.float }}</span>
+        </td>
+        <td>
+          <span class="badge label label-color" [style.background-color]="data.color">
+            {{ data.color }}
+          </span>
+        </td>
+        <td>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Color</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">
+                  <span class="label label-id">{{ data.child.id }}</span>
+                </th>
+                <td>
+                  <span class="badge label label-color" [style.background-color]="data.child.color">
+                    {{ data.child.color }}
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

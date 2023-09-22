@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { plainToInstance } from 'class-transformer';
 import { validateSync, ValidationError } from 'class-validator';
-import { DataDto } from '../../../common';
+import { DataDto } from '../../shared';
 import { DataConfig } from '../interfaces';
 import { HomeActions, HomeState } from '../state-management';
 

@@ -1,0 +1,10 @@
+@import '../../../../theme/tools';
+
+:host {
+  @include flex-row-center();
+
+  svg {
+    max-width: 230px;
+    max-height: 100px;
+  }
+}

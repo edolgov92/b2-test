@@ -2,13 +2,14 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { SharedModule } from '../modules';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './components';
+import * as Components from './components';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [AppRoutingModule, BrowserModule, EffectsModule.forRoot(), StoreModule.forRoot()],
+  declarations: [Components.AppComponent, Components.SplashScreenComponent],
+  imports: [AppRoutingModule, BrowserModule, EffectsModule.forRoot(), SharedModule, StoreModule.forRoot()],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [Components.AppComponent],
 })
 export class AppModule {}

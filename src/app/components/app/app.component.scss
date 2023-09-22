@@ -1,0 +1,21 @@
+@import '../../../theme/animation';
+
+:host {
+  display: block;
+  height: 100vh;
+  overflow-y: auto;
+
+  .router {
+    &:not(.display) {
+      display: none;
+    }
+  }
+
+  .display {
+    @include animation-fade-in();
+  }
+
+  .hide {
+    @include animation-fade-out();
+  }
+}
