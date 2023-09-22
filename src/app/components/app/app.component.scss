@@ -12,11 +12,19 @@
     }
   }
 
-  .display {
-    @include animation-fade-in();
+  app-splash-screen {
+    &.display {
+      @include animation-fade-in();
+    }
+  }
+
+  .router {
+    &.display {
+      @include animation-fade-in(0.5s);
+    }
   }
 
   .hide {
-    @include animation-fade-out();
+    @include animation-fade-out(0.5s);
   }
 }

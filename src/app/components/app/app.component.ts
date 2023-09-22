@@ -10,8 +10,8 @@ enum State {
   DisplayingApp = 'DisplayingApp',
 }
 
-const APP_READY_TIMEOUT_MS: number = 1200;
-const APP_SHOW_TIMEOUT_MS: number = 1000;
+const APP_READY_TIMEOUT_MS: number = 500;
+const APP_SHOW_TIMEOUT_MS: number = 500;
 const SPLASH_SCREEN_HIDE_TIMEOUT_MS: number = 4500;
 
 @Component({
