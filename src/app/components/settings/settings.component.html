@@ -6,7 +6,7 @@
     aria-expanded="false"
     (click)="closeSwitchLanguageSubmenu($event, false)"
   >
-    <i class="fa-solid fa-gear"></i>
+    <img class="icon" src="/assets/icons/gear-solid.svg" />
   </button>
   <ul class="dropdown-menu">
     <ng-container *ngIf="switchLanguageSubmenuOpened$ | async; else mainMenu">
