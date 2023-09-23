@@ -1,11 +1,13 @@
 @import 'theme/variables';
 @import 'node_modules/bootstrap/scss/bootstrap';
 
-@import 'theme/alert';
-@import 'theme/button';
-@import 'theme/card';
+@import 'theme/components/alert';
+@import 'theme/components/button';
+@import 'theme/components/card';
+@import 'theme/components/form';
+@import 'theme/components/table';
+
+@import 'theme/third-party/introjs';
+
 @import 'theme/fonts';
-@import 'theme/form';
-@import 'theme/introjs';
 @import 'theme/main';
-@import 'theme/table';
