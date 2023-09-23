@@ -1,0 +1,6 @@
+.alert {
+  &.alert-danger {
+    background-color: $danger;
+    color: $white;
+  }
+}

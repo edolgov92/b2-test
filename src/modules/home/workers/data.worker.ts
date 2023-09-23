@@ -43,7 +43,6 @@ function startEmittingData(arraySize: number, intervalMs: number) {
     clearInterval(handle);
   }
   handle = setInterval(() => {
-    console.time('1');
     const dataArray: any[] = [];
     let startId: number = getRandomNumber(1, 10000);
     let idIncrement: number = getRandomNumber(1, 10);
@@ -70,7 +69,6 @@ function startEmittingData(arraySize: number, intervalMs: number) {
         numberIndex = 0;
       }
     }
-    console.timeEnd('1');
     postMessage(dataArray);
   }, intervalMs) as unknown as number;
 }

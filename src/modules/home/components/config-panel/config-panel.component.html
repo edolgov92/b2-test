@@ -57,6 +57,9 @@
       </div>
     </div>
   </div>
+  <div *ngIf="showBadConfigurationError$ | async" class="alert alert-danger mt-3 mb-4" role="alert" translate>
+    home.config_panel.errors.bad_configuration
+  </div>
   <div *ngIf="formUpdated$ | async" class="actions d-flex justify-content-center mt-3">
     <button type="button" class="btn btn-secondary" (click)="reset()" translate>
       home.config_panel.buttons.cancel
@@ -64,7 +67,7 @@
     <button
       type="button"
       class="btn btn-success ms-3"
-      [disabled]="!this.form.valid"
+      [disabled]="!this.form.valid || (showBadConfigurationError$ | async)"
       (click)="submit()"
       translate
     >

@@ -13,6 +13,8 @@ interface FormValue {
   intervalMs: number;
 }
 
+const MAX_PARAMETERS_RELATION: number = 100;
+
 @Component({
   selector: 'hm-config-panel',
   templateUrl: './config-panel.component.html',
@@ -29,6 +31,7 @@ export class ConfigPanelComponent extends AbstractComponent {
 
   formUpdated$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   formWasValidated$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  showBadConfigurationError$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   form: FormGroup;
 
@@ -49,6 +52,11 @@ export class ConfigPanelComponent extends AbstractComponent {
       const formUpdated: boolean = JSON.stringify(value) !== this.initialFormValue;
       if (this.formUpdated$.value !== formUpdated) {
         this.formUpdated$.next(formUpdated);
+      }
+      const showBadConfigurationError: boolean =
+        formUpdated && value.arraySize / value.intervalMs > MAX_PARAMETERS_RELATION;
+      if (showBadConfigurationError !== this.showBadConfigurationError$.value) {
+        this.showBadConfigurationError$.next(showBadConfigurationError);
       }
       if (!formUpdated && this.formWasValidated$.value) {
         this.formWasValidated$.next(false);

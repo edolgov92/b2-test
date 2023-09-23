@@ -3,11 +3,11 @@
   border-radius: 1rem;
 
   &.btn-success {
-    color: var(--bs-white);
+    color: $white;
     background-color: $success;
 
     &:focus {
-      color: var(--bs-white);
+      color: $white;
     }
   }
 }
