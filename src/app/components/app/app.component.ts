@@ -4,15 +4,15 @@ import { BehaviorSubject, firstValueFrom, takeUntil, timer } from 'rxjs';
 import { AbstractComponent } from '../../../modules/shared';
 import { AppActions, AppState } from '../../state-management';
 
-enum State {
+export enum State {
   DisplayingSplashScreen = 'DisplayingSplashScreen',
   HidingSplashScreen = 'HidingSplashScreen',
   DisplayingApp = 'DisplayingApp',
 }
 
-const APP_READY_TIMEOUT_MS: number = 500;
-const APP_SHOW_TIMEOUT_MS: number = 500;
-const SPLASH_SCREEN_HIDE_TIMEOUT_MS: number = 4500;
+export const APP_READY_TIMEOUT_MS: number = 500;
+export const APP_SHOW_TIMEOUT_MS: number = 500;
+export const SPLASH_SCREEN_HIDE_TIMEOUT_MS: number = 4500;
 
 @Component({
   selector: 'app-root',
@@ -33,12 +33,14 @@ export class AppComponent extends AbstractComponent implements AfterViewInit {
     this.startApp();
   }
 
-  private async startApp(): Promise<void> {
-    await firstValueFrom(timer(SPLASH_SCREEN_HIDE_TIMEOUT_MS).pipe(takeUntil(this.destroyed$)));
-    this.state$.next(State.HidingSplashScreen);
-    await firstValueFrom(timer(APP_SHOW_TIMEOUT_MS).pipe(takeUntil(this.destroyed$)));
-    this.state$.next(State.DisplayingApp);
-    await firstValueFrom(timer(APP_READY_TIMEOUT_MS).pipe(takeUntil(this.destroyed$)));
-    this.store.dispatch(new AppActions.SetAppDisplayedAction(true));
+  async startApp(): Promise<void> {
+    try {
+      await firstValueFrom(timer(SPLASH_SCREEN_HIDE_TIMEOUT_MS).pipe(takeUntil(this.destroyed$)));
+      this.state$.next(State.HidingSplashScreen);
+      await firstValueFrom(timer(APP_SHOW_TIMEOUT_MS).pipe(takeUntil(this.destroyed$)));
+      this.state$.next(State.DisplayingApp);
+      await firstValueFrom(timer(APP_READY_TIMEOUT_MS).pipe(takeUntil(this.destroyed$)));
+      this.store.dispatch(new AppActions.SetAppDisplayedAction(true));
+    } catch {}
   }
 }

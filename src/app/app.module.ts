@@ -58,7 +58,7 @@ export function createTranslateLoader(http: HttpClient) {
       },
     }),
   ],
-  providers: [Services.TourService],
+  providers: [Services.LocationService, Services.TourService],
   bootstrap: [Components.AppComponent],
 })
 export class AppModule {}

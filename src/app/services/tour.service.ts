@@ -4,6 +4,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { LocalStorageService } from 'ngx-webstorage';
 import { filter, firstValueFrom, Observable, timer } from 'rxjs';
 import { StorageItem } from '../../modules';
+import { TOUR_STEPS } from '../constants';
+import { TourStep } from '../interfaces';
 import { AppActions, AppSelectors, AppState } from '../state-management';
 
 declare var introJs: any;
@@ -22,6 +24,10 @@ export class TourService {
     private store: Store<AppState>,
     private translateService: TranslateService
   ) {
+    this.checkTour();
+  }
+
+  checkTour(): void {
     const tourCompleted: 'true' | undefined = this.localStorageService.retrieve(StorageItem.TourCompleted);
     if (!tourCompleted) {
       this.startTour();
@@ -48,42 +54,13 @@ export class TourService {
 
   private setTourSteps(): void {
     this.tour.setOptions({
-      steps: [
-        {
-          intro: this.translateService.instant('app.tour.step_1'),
-          position: 'center',
-        },
-        {
-          element: document.getElementById('tour-step-2'),
-          intro: this.translateService.instant('app.tour.step_2'),
-          position: 'top',
-        },
-        {
-          element: document.getElementById('tour-step-3'),
-          intro: this.translateService.instant('app.tour.step_3'),
-          position: 'bottom',
-        },
-        {
-          element: document.getElementById('tour-step-4'),
-          intro: this.translateService.instant('app.tour.step_4'),
-          position: 'bottom',
-        },
-        {
-          element: document.getElementById('tour-step-5'),
-          intro: this.translateService.instant('app.tour.step_5'),
-          position: 'bottom',
-        },
-        {
-          element: document.getElementById('tour-step-6'),
-          intro: this.translateService.instant('app.tour.step_6'),
-          position: 'bottom',
-        },
-        {
-          element: document.getElementById('tour-step-7'),
-          intro: this.translateService.instant('app.tour.step_7'),
-          position: 'bottom',
-        },
-      ],
+      steps: TOUR_STEPS.map((item: TourStep) => {
+        return {
+          element: item.element ? document.getElementById(item.element) : undefined,
+          intro: this.translateService.instant(item.intro),
+          position: item.position,
+        };
+      }),
     });
   }
 }

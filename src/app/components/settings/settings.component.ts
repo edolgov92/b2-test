@@ -4,6 +4,7 @@ import { LocalStorageService } from 'ngx-webstorage';
 import { BehaviorSubject } from 'rxjs';
 import { Language, LanguageInterface, LANGUAGES } from '../../../modules/i18n';
 import { getEnumValues, StorageItem } from '../../../modules/shared';
+import { LocationService } from '../../services';
 import { AppActions } from '../../state-management';
 
 @Component({
@@ -17,7 +18,11 @@ export class SettingsComponent {
 
   languages: LanguageInterface[];
 
-  constructor(private localStorageService: LocalStorageService, private store: Store) {
+  constructor(
+    private localStorageService: LocalStorageService,
+    private locationService: LocationService,
+    private store: Store
+  ) {
     this.languages = getEnumValues<Language>(Language).map((language: Language) => {
       return LANGUAGES.find((item: LanguageInterface) => item.code === language)!;
     });
@@ -43,7 +48,7 @@ export class SettingsComponent {
 
   selectLanguage(language: LanguageInterface): void {
     this.localStorageService.store(StorageItem.Language, language.code);
-    location.reload();
+    this.locationService.reload();
   }
 
   startTour(event: MouseEvent): void {
