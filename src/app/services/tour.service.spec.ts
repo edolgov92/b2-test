@@ -36,7 +36,7 @@ describe('TourService', () => {
       ],
     });
 
-    service = TestBed.inject(TourService);
+    service = TestBed.inject(TourService) as TourService & { setTourSteps: () => void };
   });
 
   it('should be created', () => {

@@ -4,6 +4,8 @@ import { distinctUntilChanged, Observable, takeUntil, throttleTime } from 'rxjs'
 import { AbstractComponent, DataDto } from '../../../shared';
 import { HomeSelectors, HomeState } from '../../state-management';
 
+export const THROTTLE_TIME: number = 100;
+
 @Component({
   selector: 'hm-data-table',
   templateUrl: './data-table.component.html',
@@ -16,7 +18,7 @@ export class DataTableComponent extends AbstractComponent implements OnInit {
     .pipe(takeUntil(this.destroyed$));
   dataList$: Observable<DataDto[]> = this.store
     .select(HomeSelectors.GetDataListSelector)
-    .pipe(takeUntil(this.destroyed$), throttleTime(100), distinctUntilChanged());
+    .pipe(takeUntil(this.destroyed$), throttleTime(THROTTLE_TIME), distinctUntilChanged());
 
   additionalIds: string[] = [];
 

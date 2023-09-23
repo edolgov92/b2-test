@@ -54,7 +54,7 @@ export class ConfigPanelComponent extends AbstractComponent {
         this.formUpdated$.next(formUpdated);
       }
       const showBadConfigurationError: boolean =
-        formUpdated && value.arraySize / value.intervalMs > MAX_PARAMETERS_RELATION;
+        formUpdated && value.intervalMs > 0 && value.arraySize / value.intervalMs > MAX_PARAMETERS_RELATION;
       if (showBadConfigurationError !== this.showBadConfigurationError$.value) {
         this.showBadConfigurationError$.next(showBadConfigurationError);
       }
