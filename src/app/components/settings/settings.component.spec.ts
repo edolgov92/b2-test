@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockStore } from '@ngrx/store/testing';
+import { TranslateModule } from '@ngx-translate/core';
 import { LocalStorageService } from 'ngx-webstorage';
 import { LanguageInterface } from '../../../modules/i18n';
 import { LocationService } from '../../services';
@@ -18,7 +19,7 @@ describe('SettingsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule, TranslateModule.forRoot()],
       declarations: [SettingsComponent],
       providers: [
         LocationService,

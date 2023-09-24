@@ -2,6 +2,7 @@ import { ComponentFixture, discardPeriodicTasks, fakeAsync, TestBed, tick } from
 import { RouterTestingModule } from '@angular/router/testing';
 import { Store } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
+import { TranslateModule } from '@ngx-translate/core';
 import { LocalStorageService } from 'ngx-webstorage';
 import 'reflect-metadata';
 import { SharedModule } from '../../../modules';
@@ -24,7 +25,7 @@ describe('AppComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, SharedModule],
+      imports: [RouterTestingModule, SharedModule, TranslateModule.forRoot()],
       declarations: [AppComponent, SettingsComponent, SplashScreenComponent],
       providers: [
         LocationService,

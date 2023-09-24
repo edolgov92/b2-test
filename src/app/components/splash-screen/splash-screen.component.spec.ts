@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '../../../modules';
 import { SplashScreenComponent } from './splash-screen.component';
 
@@ -10,7 +11,7 @@ describe('SplashScreenComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, SharedModule],
+      imports: [RouterTestingModule, SharedModule, TranslateModule.forRoot()],
       declarations: [SplashScreenComponent],
     });
     fixture = TestBed.createComponent(SplashScreenComponent);
