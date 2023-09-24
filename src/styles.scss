@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'theme/variables';
+@import 'node_modules/bootstrap/scss/bootstrap';
+
+@import 'theme/components/alert';
+@import 'theme/components/button';
+@import 'theme/components/card';
+@import 'theme/components/form';
+@import 'theme/components/table';
+
+@import 'theme/third-party/introjs';
+
+@import 'theme/fonts';
+@import 'theme/main';

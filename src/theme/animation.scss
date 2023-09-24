@@ -1,0 +1,43 @@
+@mixin animation-fade-in($duration: 1.2s) {
+  -webkit-animation: fade-in $duration cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: fade-in $duration cubic-bezier(0.39, 0.575, 0.565, 1) both;
+
+  @-webkit-keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+@mixin animation-fade-out($duration: 1.2s) {
+  -webkit-animation: fade-out $duration cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: fade-out $duration cubic-bezier(0.39, 0.575, 0.565, 1) both;
+
+  @-webkit-keyframes fade-out {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes fade-out {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+}

@@ -1,0 +1,54 @@
+<div class="table-container">
+  <div id="tour-step-2" class="tour-area"></div>
+  <table id="main-table" class="table">
+    <thead>
+      <tr>
+        <th scope="col" translate>home.data_table.id</th>
+        <th scope="col" translate>home.data_table.int</th>
+        <th scope="col" translate>home.data_table.float</th>
+        <th scope="col" translate>home.data_table.color</th>
+        <th scope="col" translate>home.data_table.child</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of dataList$ | async; let i = index; trackBy: trackById">
+        <th scope="row">
+          <span class="label label-id">{{ additionalIds[i] || data.id }}</span>
+        </th>
+        <td>
+          <span class="label label-int">{{ data.int }}</span>
+        </td>
+        <td>
+          <span class="label label-float">{{ data.float }}</span>
+        </td>
+        <td>
+          <span class="badge label label-color" [style.background-color]="data.color">
+            {{ data.color }}
+          </span>
+        </td>
+        <td>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col" translate>home.data_table.id</th>
+                <th scope="col" translate>home.data_table.color</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">
+                  <span class="label label-id">{{ data.child.id }}</span>
+                </th>
+                <td>
+                  <span class="badge label label-color" [style.background-color]="data.child.color">
+                    {{ data.child.color }}
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

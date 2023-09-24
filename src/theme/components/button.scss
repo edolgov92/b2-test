@@ -1,0 +1,13 @@
+.btn {
+  font-weight: 500;
+  border-radius: 1rem;
+
+  &.btn-success {
+    color: $white;
+    background-color: $success;
+
+    &:focus {
+      color: $white;
+    }
+  }
+}

@@ -1,0 +1,39 @@
+<div id="tour-step-7" class="dropdown">
+  <button
+    class="btn dropdown-toggle"
+    type="button"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+    [attr.aria-label]="'app.settings.button_name' | translate"
+    (click)="closeSwitchLanguageSubmenu($event, false)"
+  >
+    <img
+      class="icon"
+      [attr.alt]="'app.settings.button_name' | translate"
+      src="/assets/icons/gear-solid.svg"
+    />
+  </button>
+  <ul class="dropdown-menu">
+    <ng-container *ngIf="switchLanguageSubmenuOpened$ | async; else mainMenu">
+      <li *ngFor="let language of languages">
+        <a class="dropdown-item" href="#" (click)="selectLanguage(language)">{{ language.nativeName }}</a>
+      </li>
+      <li><hr class="dropdown-divider" /></li>
+      <li>
+        <a class="dropdown-item" href="#" translate (click)="closeSwitchLanguageSubmenu($event, true)">
+          app.settings.menu.back
+        </a>
+      </li>
+    </ng-container>
+    <ng-template #mainMenu>
+      <li>
+        <a class="dropdown-item" href="#" translate (click)="openSwitchLanguageSubmenu($event)">
+          app.settings.menu.language
+        </a>
+      </li>
+      <li>
+        <a class="dropdown-item" href="#" translate (click)="startTour($event)">app.settings.menu.tour</a>
+      </li>
+    </ng-template>
+  </ul>
+</div>

@@ -1,0 +1,34 @@
+:host {
+  position: relative;
+}
+:host .table-container {
+  overflow-x: auto;
+}
+:host .label {
+  display: inline-block;
+}
+:host .label.label-id {
+  min-width: 90px;
+}
+:host .label.label-int {
+  min-width: 37px;
+}
+:host .label.label-float {
+  min-width: 67px;
+}
+:host .label.label-color {
+  min-width: 150px;
+}
+:host .label.badge {
+  margin: 2px 0;
+  color: var(--bs-dark);
+  font-weight: 500;
+}
+:host .tour-area {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 270px;
+  visibility: hidden;
+}/*# sourceMappingURL=data-table.component.css.map */

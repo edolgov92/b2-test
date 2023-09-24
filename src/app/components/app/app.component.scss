@@ -1,0 +1,30 @@
+@import '../../../theme/animation';
+@import '../../../theme/tools';
+
+:host {
+  display: block;
+  height: 100vh;
+  overflow-y: auto;
+
+  .router {
+    &:not(.display) {
+      display: none;
+    }
+  }
+
+  app-splash-screen {
+    &.display {
+      @include animation-fade-in();
+    }
+  }
+
+  .router {
+    &.display {
+      @include animation-fade-in(0.5s);
+    }
+  }
+
+  .hide {
+    @include animation-fade-out(0.5s);
+  }
+}
