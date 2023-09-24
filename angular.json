@@ -25,7 +25,11 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["src/assets"],
-            "styles": ["node_modules/intro.js/minified/introjs.min.css", "src/styles.scss"],
+            "styles": [
+              "node_modules/intro.js/minified/introjs.min.css",
+              "src/assets/css/loader-animation.min.css",
+              "src/styles.scss"
+            ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
               "node_modules/intro.js/minified/intro.min.js"
@@ -46,13 +50,6 @@
                   "maximumError": "15kb"
                 }
               ],
-              "optimization": {
-                "scripts": true,
-                "styles": {
-                  "minify": true,
-                  "inlineCritical": false
-                }
-              },
               "outputHashing": "all"
             },
             "development": {
@@ -91,7 +88,11 @@
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": ["src/assets"],
-            "styles": ["node_modules/intro.js/minified/introjs.min.css", "src/styles.scss"],
+            "styles": [
+              "node_modules/intro.js/minified/introjs.min.css",
+              "src/assets/css/loader-animation.min.css",
+              "src/styles.scss"
+            ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
               "node_modules/intro.js/minified/intro.min.js"
