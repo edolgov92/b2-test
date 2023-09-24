@@ -12,7 +12,7 @@ describe('getEnumValues function', () => {
   });
 
   it('should return an empty array if the enum is empty', () => {
-    const enumValues = getEnumValues<{}>({});
+    const enumValues: unknown[] = getEnumValues({});
     expect(enumValues).toEqual([]);
   });
 });

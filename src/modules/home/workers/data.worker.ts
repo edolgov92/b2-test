@@ -23,7 +23,7 @@ const COLORS: string[] = [
 const INTEGERS: number[] = [];
 const FLOATS: number[] = [];
 
-let handle: any;
+let handle: number;
 
 let colorIndex: number = 0;
 let numberIndex: number = 0;
@@ -43,9 +43,9 @@ function startEmittingData(arraySize: number, intervalMs: number) {
     clearInterval(handle);
   }
   handle = setInterval(() => {
-    const dataArray: any[] = [];
+    const dataArray = [];
     let startId: number = getRandomNumber(1, 10000);
-    let idIncrement: number = getRandomNumber(1, 10);
+    const idIncrement: number = getRandomNumber(1, 10);
     for (let i = 0; i < arraySize; i++) {
       const child = { id: startId.toString(), color: COLORS[colorIndex++] };
       startId += idIncrement;
@@ -75,8 +75,4 @@ function startEmittingData(arraySize: number, intervalMs: number) {
 
 function getRandomNumber(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function getRandomElementFromArray<T = any>(items: T[]): T {
-  return items[Math.floor(Math.random() * items.length)];
 }

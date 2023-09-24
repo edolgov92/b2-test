@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, take, takeUntil } from 'rxjs';
 import { AbstractComponent } from '../../../shared';
@@ -12,7 +12,7 @@ import { HomeSelectors, HomeState } from '../../state-management';
   styleUrls: ['./layout.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeLayoutComponent extends AbstractComponent {
+export class HomeLayoutComponent extends AbstractComponent implements AfterViewInit {
   dataConfig$: Observable<DataConfig> = this.store
     .select(HomeSelectors.GetDataConfigSelector)
     .pipe(takeUntil(this.destroyed$));

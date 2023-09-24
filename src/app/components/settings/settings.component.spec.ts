@@ -12,7 +12,7 @@ describe('SettingsComponent', () => {
   let fixture: ComponentFixture<SettingsComponent>;
   let component: SettingsComponent;
   let componentElement: HTMLElement;
-  let localStorageService: Partial<LocalStorageService> = {
+  const localStorageService: Partial<LocalStorageService> = {
     store: jasmine.createSpy('store'),
   };
 

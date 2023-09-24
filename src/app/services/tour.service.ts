@@ -8,7 +8,8 @@ import { TOUR_STEPS } from '../constants';
 import { TourStep } from '../interfaces';
 import { AppActions, AppSelectors, AppState } from '../state-management';
 
-declare var introJs: any;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+declare const introJs: any;
 
 const START_TOUR_DELAY_MS: number = 1000;
 
@@ -17,12 +18,13 @@ export class TourService {
   appDisplayed$: Observable<boolean> = this.store.select(AppSelectors.GetAppDisplayedSelector);
   tourInProgress$: Observable<boolean> = this.store.select(AppSelectors.GetTourInProgressSelector);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private tour: any;
 
   constructor(
     private localStorageService: LocalStorageService,
     private store: Store<AppState>,
-    private translateService: TranslateService
+    private translateService: TranslateService,
   ) {
     this.checkTour();
   }

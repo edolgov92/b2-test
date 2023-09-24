@@ -1,8 +1,6 @@
 import { ActionWithData, DataDto } from '../../../../shared';
 import { DataConfig } from '../../../interfaces';
 
-/* tslint:disable:max-classes-per-file */
-// tslint:disable-next-line: no-namespace
 export namespace HomeActions {
   export enum Actions {
     SetAdditionalIds = '[Home] SetAdditionalIds',

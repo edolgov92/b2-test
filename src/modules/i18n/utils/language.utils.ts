@@ -15,8 +15,10 @@ export function getCurrentLanguage(): LanguageInterface {
   } else {
     if (window && navigator) {
       lang = navigator.languages ? navigator.languages[0] : null;
+      /* eslint-disable @typescript-eslint/no-explicit-any */
       lang =
         lang || navigator.language || (navigator as any).browserLanguage || (navigator as any).userLanguage;
+      /* eslint-enable @typescript-eslint/no-explicit-any */
       if (lang) {
         if (lang.includes('-')) {
           lang = lang.split('-')[0];

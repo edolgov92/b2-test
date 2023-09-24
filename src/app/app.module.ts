@@ -15,6 +15,7 @@ import * as Components from './components';
 import * as Services from './services';
 import { AppActions, AppEffects, appReducer, AppState } from './state-management';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const localesMap: Map<Language, any> = new Map([
   [Language.Armenian, localeHy],
   [Language.English, localeEn],

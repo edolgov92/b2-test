@@ -1,6 +1,7 @@
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 
 export function idsListValidator(): ValidatorFn {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (control: AbstractControl): { [key: string]: any } | null => {
     if (control.value) {
       const ids: string[] = control.value.replace(/\s+/g, '').split(',');

@@ -41,6 +41,7 @@ export class AppComponent extends AbstractComponent implements AfterViewInit {
       this.state$.next(State.DisplayingApp);
       await firstValueFrom(timer(APP_READY_TIMEOUT_MS).pipe(takeUntil(this.destroyed$)));
       this.store.dispatch(new AppActions.SetAppDisplayedAction(true));
+      // eslint-disable-next-line no-empty
     } catch {}
   }
 }

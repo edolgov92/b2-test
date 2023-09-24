@@ -1,8 +1,6 @@
 import { Action } from '@ngrx/store';
 import { ActionWithData } from '../../../../modules/shared';
 
-/* tslint:disable:max-classes-per-file */
-// tslint:disable-next-line: no-namespace
 export namespace AppActions {
   export enum Actions {
     SetAppDisplayed = '[App] SetAppDisplayed',
@@ -22,7 +20,6 @@ export namespace AppActions {
 
   export class StartTourAction implements Action {
     readonly type: Actions = Actions.StartTour;
-    constructor() {}
   }
 
   export type AppActionsType = SetAppDisplayedAction | SetTourInProgressAction | StartTourAction;

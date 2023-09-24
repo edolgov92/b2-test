@@ -36,6 +36,7 @@ describe('DataService', () => {
 
   it('should log an error if worker instantiation fails', () => {
     const consoleErrorSpy: jasmine.Spy = spyOn(console, 'error');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (window as any).Worker = undefined;
     service = new DataService(store as Store<HomeState>);
     expect(consoleErrorSpy).toHaveBeenCalledWith('Workers are not supported in this environment');

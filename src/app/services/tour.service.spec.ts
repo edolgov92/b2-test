@@ -20,9 +20,11 @@ describe('TourService', () => {
     translateService = jasmine.createSpyObj('TranslateService', ['instant']);
 
     store = jasmine.createSpyObj('Store', ['dispatch', 'select']);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (store.select as jasmine.SpyObj<any>)
       .withArgs(AppSelectors.GetAppDisplayedSelector)
       .and.returnValue(of(true));
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (store.select as jasmine.SpyObj<any>)
       .withArgs(AppSelectors.GetTourInProgressSelector)
       .and.returnValue(of(false));
@@ -44,6 +46,7 @@ describe('TourService', () => {
   });
 
   it('should start tour if tour is not in progress and app is displayed', async () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     spyOn(service as any, 'setTourSteps');
     localStorageService.retrieve.and.returnValue(undefined);
 
@@ -51,6 +54,7 @@ describe('TourService', () => {
     const tourSetOptionsSpy: jasmine.Spy<jasmine.Func> = jasmine.createSpy('setOptions');
     const tourStartSpy: jasmine.Spy<jasmine.Func> = jasmine.createSpy('start');
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (window as any).introJs = jasmine.createSpy().and.returnValue({
       onexit: tourOnExitSpy,
       setOptions: tourSetOptionsSpy,
@@ -62,6 +66,7 @@ describe('TourService', () => {
 
     // Assert
     expect(tourStartSpy).toHaveBeenCalled();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect((service as any).setTourSteps).toHaveBeenCalled();
     expect(localStorageService.store).toHaveBeenCalledWith(StorageItem.TourCompleted, 'true');
     expect(store.dispatch).toHaveBeenCalledWith(new AppActions.SetTourInProgressAction(true));
@@ -82,6 +87,7 @@ describe('TourService', () => {
   });
 
   it('should NOT start the tour if it is already in progress', async () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (store.select as jasmine.SpyObj<any>)
       .withArgs(AppSelectors.GetTourInProgressSelector)
       .and.returnValue(of(true));
@@ -97,6 +103,7 @@ describe('TourService', () => {
     const tourSetOptionsSpy: jasmine.Spy<jasmine.Func> = jasmine.createSpy('setOptions');
     const tourStartSpy: jasmine.Spy<jasmine.Func> = jasmine.createSpy('start');
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (window as any).introJs = jasmine.createSpy().and.returnValue({
       onexit: tourOnExitSpy,
       setOptions: tourSetOptionsSpy,

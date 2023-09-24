@@ -32,7 +32,7 @@ describe('AppComponent', () => {
         {
           provide: LocalStorageService,
           useValue: {
-            store: () => {},
+            store: jasmine.createSpy('store'),
           },
         },
       ],

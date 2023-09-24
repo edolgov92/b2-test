@@ -124,7 +124,7 @@ export class ConfigPanelComponent extends AbstractComponent {
 
   private getFormAdditionalIdsList(sort: boolean): string[] {
     const additionalIdsString: string = this.form.value.additionalIds || '';
-    let additionalIds: string[] = additionalIdsString.replace(/\s+/g, '').split(',');
+    const additionalIds: string[] = additionalIdsString.replace(/\s+/g, '').split(',');
     if (sort) {
       additionalIds.sort((a: string, b: string) => parseInt(a) - parseInt(b));
     }

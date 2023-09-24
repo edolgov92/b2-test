@@ -5,7 +5,7 @@ import { getCurrentLanguage } from './language.utils';
 
 export function translationInitializeFactory(translate: TranslateService, injector: Injector) {
   return () =>
-    new Promise<any>((resolve: any) => {
+    new Promise<null>((resolve) => {
       const locationInitialized = injector.get(LOCATION_INITIALIZED, Promise.resolve(null));
       locationInitialized.then(() => {
         const language: string = getCurrentLanguage().code;
@@ -13,12 +13,12 @@ export function translationInitializeFactory(translate: TranslateService, inject
           () => {
             console.info(`Successfully initialized '${language}' language.`);
           },
-          (err: any) => {
+          () => {
             console.error(`Problem with '${language}' language initialization.'`);
           },
           () => {
             resolve(null);
-          }
+          },
         );
       });
     });
