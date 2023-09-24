@@ -61,12 +61,19 @@
     home.config_panel.errors.bad_configuration
   </div>
   <div *ngIf="formUpdated$ | async" class="actions d-flex justify-content-center mt-3">
-    <button type="button" class="btn btn-secondary" (click)="reset()" translate>
+    <button
+      type="button"
+      class="btn btn-secondary"
+      [attr.aria-label]="'home.config_panel.buttons.cancel' | translate"
+      (click)="reset()"
+      translate
+    >
       home.config_panel.buttons.cancel
     </button>
     <button
       type="button"
       class="btn btn-success ms-3"
+      [attr.aria-label]="'home.config_panel.buttons.apply' | translate"
       [disabled]="!this.form.valid || (showBadConfigurationError$ | async)"
       (click)="submit()"
       translate

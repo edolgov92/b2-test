@@ -1,6 +1,8 @@
 {
   "app": {
     "settings": {
+      "button_name": "Settings button",
+      "icon_name": "Settings icon",
       "menu": {
         "back": "Back",
         "language": "Change language",
