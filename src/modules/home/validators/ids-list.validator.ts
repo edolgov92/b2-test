@@ -1,5 +1,8 @@
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 
+/**
+ * Validates ids list in Angular form to make sure each id represents number
+ */
 export function idsListValidator(): ValidatorFn {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (control: AbstractControl): { [key: string]: any } | null => {

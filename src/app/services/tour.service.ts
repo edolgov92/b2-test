@@ -29,6 +29,10 @@ export class TourService {
     this.checkTour();
   }
 
+  /**
+   * Checks if tour was completed before by looking in local storage, if it was not completed -
+   * we start the tour
+   */
   checkTour(): void {
     const tourCompleted: 'true' | undefined = this.localStorageService.retrieve(StorageItem.TourCompleted);
     if (!tourCompleted) {
@@ -36,9 +40,14 @@ export class TourService {
     }
   }
 
+  /**
+   * Starts the tour
+   */
   async startTour(): Promise<void> {
+    // Need to make sure that main app screen was displayed
     await firstValueFrom(this.appDisplayed$.pipe(filter((appDisplayed: boolean) => !!appDisplayed)));
     const tourInProgress: boolean = await firstValueFrom(this.tourInProgress$);
+    // Checking if tour is already in progress
     if (!tourInProgress) {
       await firstValueFrom(timer(START_TOUR_DELAY_MS));
       if (!this.tour) {
@@ -48,12 +57,17 @@ export class TourService {
           this.store.dispatch(new AppActions.SetTourInProgressAction(false));
         });
       }
+      // Start tour
       this.tour.start();
+      // Set tour completed flag in local storage to avoid running it again later
       this.localStorageService.store(StorageItem.TourCompleted, 'true');
       this.store.dispatch(new AppActions.SetTourInProgressAction(true));
     }
   }
 
+  /**
+   * Sets tour steps
+   */
   private setTourSteps(): void {
     this.tour.setOptions({
       steps: TOUR_STEPS.map((item: TourStep) => {

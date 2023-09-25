@@ -22,6 +22,7 @@ export class HomeLayoutComponent extends AbstractComponent implements AfterViewI
   }
 
   ngAfterViewInit(): void {
+    // Update data service config initially
     this.dataConfig$.pipe(take(1)).subscribe((dataConfig: DataConfig) => {
       this.dataService.updateConfig(dataConfig);
     });
