@@ -46,28 +46,37 @@ export class ConfigPanelComponent extends AbstractComponent {
       intervalMs: [null, [Validators.required, Validators.min(1), Validators.max(100000)]],
     });
 
+    // Set form values from Store
     this.setStoredFormValues(false);
 
+    // Handle form value changes
     this.form.valueChanges.subscribe((value: FormValue) => {
+      // Check if form were updated by comparing current form value with initial form value
       const formUpdated: boolean = JSON.stringify(value) !== this.initialFormValue;
       if (this.formUpdated$.value !== formUpdated) {
         this.formUpdated$.next(formUpdated);
       }
+      // Check for bad configuration
       const showBadConfigurationError: boolean =
         formUpdated && value.intervalMs > 0 && value.arraySize / value.intervalMs > MAX_PARAMETERS_RELATION;
       if (showBadConfigurationError !== this.showBadConfigurationError$.value) {
         this.showBadConfigurationError$.next(showBadConfigurationError);
       }
+      // If form is not updated - hide valid/invalid labels
       if (!formUpdated && this.formWasValidated$.value) {
         this.formWasValidated$.next(false);
       }
     });
 
+    // This callback is executed in 1000 ms after form was updated to avoid
+    // changes on every key press
     this.form.valueChanges.pipe(debounceTime(1000)).subscribe(() => {
       if (this.formUpdated$.value) {
+        // Show valid/invalid labels
         if (!this.formWasValidated$.value) {
           this.formWasValidated$.next(true);
         }
+        // Format additional ids list
         const additionalIdsString: string = this.getFormAdditionalIdsList(false).join(', ');
         if (this.form.value.additionalIds !== additionalIdsString) {
           this.form.controls['additionalIds'].setValue(additionalIdsString, { emit: false });
@@ -76,6 +85,9 @@ export class ConfigPanelComponent extends AbstractComponent {
     });
   }
 
+  /**
+   * Saves form changes - additional ids and data config
+   */
   submit(): void {
     if (!this.form.valid) {
       return;
@@ -104,11 +116,17 @@ export class ConfigPanelComponent extends AbstractComponent {
     this.formWasValidated$.next(false);
   }
 
+  /**
+   * Discards form changes
+   */
   reset(): void {
     this.setStoredFormValues(true);
     this.formWasValidated$.next(false);
   }
 
+  /**
+   * Sets form value from Store
+   */
   private setStoredFormValues(emitEvent: boolean): void {
     combineLatest([this.additionalIds$, this.dataConfig$])
       .pipe(take(1))
@@ -118,10 +136,16 @@ export class ConfigPanelComponent extends AbstractComponent {
       });
   }
 
+  /**
+   * Sets initialFormValue string to detect form changes later
+   */
   private setInitialFormValue(): void {
     this.initialFormValue = JSON.stringify(this.form.value);
   }
 
+  /**
+   * Converts additional ids string to array
+   */
   private getFormAdditionalIdsList(sort: boolean): string[] {
     const additionalIdsString: string = this.form.value.additionalIds || '';
     const additionalIds: string[] = additionalIdsString.replace(/\s+/g, '').split(',');

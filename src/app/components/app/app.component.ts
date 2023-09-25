@@ -33,13 +33,20 @@ export class AppComponent extends AbstractComponent implements AfterViewInit {
     this.startApp();
   }
 
+  /**
+   * Shows splash screen and then shows main app screen
+   */
   async startApp(): Promise<void> {
     try {
+      // Wait until we need to hide splash screen
       await firstValueFrom(timer(SPLASH_SCREEN_HIDE_TIMEOUT_MS).pipe(takeUntil(this.destroyed$)));
       this.state$.next(State.HidingSplashScreen);
+      // Wait for hiding animation to complete
       await firstValueFrom(timer(APP_SHOW_TIMEOUT_MS).pipe(takeUntil(this.destroyed$)));
+      // Now change state to show main app screen
       this.state$.next(State.DisplayingApp);
       await firstValueFrom(timer(APP_READY_TIMEOUT_MS).pipe(takeUntil(this.destroyed$)));
+      // Let other components know that main app screen is visible
       this.store.dispatch(new AppActions.SetAppDisplayedAction(true));
       // eslint-disable-next-line no-empty
     } catch {}

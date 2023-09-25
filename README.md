@@ -19,6 +19,7 @@
 - [Requirements](#requirements)
 - [Run project](#run-project)
 - [Used patterns](#used-patterns)
+- [Rendering approaches](#rendering-approaches)
 
 ## Requirements
 
@@ -138,3 +139,83 @@ Angular’s lifecycle hooks embody the Template Method pattern, with the framewo
 #### Styling/Structural Principles
 
 SCSS (Sass) adheres to the DRY (Don’t Repeat Yourself) principle, facilitating the development of maintainable and scalable styles.
+
+## Rendering Data Table
+
+The application frequently receives data via a pseudo-socket, necessitating performance optimizations to ensure seamless functionality.
+
+### General Techniques
+
+#### Utilizing `ChangeDetectionStrategy.OnPush` in All Components
+
+This strategy mitigates unnecessary UI updates and optimizes the total number of such updates, enhancing the performance of the application.
+
+#### Incorporation of RxJS along with `throttleTime` and `distinctUntilChanged`
+
+By employing RxJS operators, the application can control the rate at which view rendering occurs, thus offering an optimized and efficient way to handle high-frequency data changes. The `throttleTime` operator limits the frequency of emitted events, while `distinctUntilChanged` ensures that only distinct, non-consecutive values are emitted, reducing the load on the rendering mechanism.
+
+### Rendering Approaches
+
+There are two prevalent approaches to rendering components subjected to high-frequency data alterations:
+
+#### Angular Binding
+
+This method leverages Angular's binding feature to exhibit tables as depicted below:
+
+```html
+<tr *ngFor="let data of dataList$ | async; let i = index; trackBy: trackById">
+  ...
+  <td>
+    <span class="label label-int">{{ data.int }}</span>
+  </td>
+  ...
+</tr>
+```
+
+Utilizing the async pipe is crucial in this context, providing a more reactive approach to handling data updates efficiently. This tool not only streamlines the subscription and unsubscription processes but also serves to diminish the risks of memory leaks associated with observable subscriptions, enhancing the overall reliability of the application. Moreover, it ensures the component stays up-to-date with the latest values, allowing the app to reflect the current state of the observable, fostering a more dynamic user interface.
+
+Coupled with the trackBy function, it enhances Angular’s performance in tracking objects and reduces the overhead of object recreation, ensuring smoother and more efficient updates.
+
+This approach was choosen due to its benefits in development speed, maintainability, and readability. It proficiently accommodates up to 10 items in the list, especially when enhanced with `throttleTime` and `distinctUntilChanged` pipes. This method serves the current scope effectively. However, as the application grows, if there’s a necessity to render a more extensive list of items, or if there are changes in requirements necessitating advanced performance optimizations, transitioning to a manual rendering approach would be necessary. This transition would allow for more granular control and optimization, ensuring seamless user experience regardless of the data volume or frequency of updates.
+
+#### Manual Rendering
+
+This concept revolves around preemptively creating 10 rows and all required columns in the HTML template before the commencement of data reception. Initially, these rows are hidden. Crucially, we abstain from recreating them with each alteration in data; instead, we focus on updating the text and styles of specific columns.
+
+Here, 10 predefined rows can be embedded in the HTML template:
+
+```html
+<!--... 10 rows-->
+<tr>
+  ...
+  <td>
+    <span class="label label-int"></span>
+  </td>
+  ...
+</tr>
+```
+
+Initially hidden, these rows are updated in terms of inner text and visibility upon the reception of new data:
+
+```javascript
+interface Row {
+  rowElement: HTMLTableRowElement;
+  idElement: HTMLSpanElement;
+  // ...
+  childIdElement: HTMLSpanElement;
+  // ...
+}
+
+const rows: Row[] = //... initialize with predefined existing HTML elements
+  dataList$.subscribe((dataList: DataDto[]) => {
+    for (let i = 0; i < 10; i++) {
+      if (dataList.length > i) {
+        // manually update rows[i] and all inner elements with values and make the row visible
+      } else {
+        // make the row hidden using .hidden class or rows[i].rowElement.style.display = 'none'
+      }
+    }
+  });
+```
+
+The advantage of this manual rendering approach is its efficiency; it avoids the recreation of HTML elements and their destruction upon the reception of new data with new values. Instead, it updates the inner text and styles of pre-existing HTML elements, which are stored in an array, eliminating the need for repeated lookups when rendering new data.

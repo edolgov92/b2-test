@@ -27,12 +27,16 @@ export class DataTableComponent extends AbstractComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Store additional ids in local variable for faster access
     this.additionalIds$.subscribe((additionalIds: string[]) => {
       this.additionalIds = additionalIds;
       this.chRef.detectChanges();
     });
   }
 
+  /**
+   * Get unique id of each item in list
+   */
   trackById(index: number, item: DataDto): string {
     return item.id;
   }
