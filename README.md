@@ -19,7 +19,7 @@
 - [Requirements](#requirements)
 - [Run project](#run-project)
 - [Used patterns](#used-patterns)
-- [Rendering approaches](#rendering-approaches)
+- [Rendering data table](#rendering-data-table)
 
 ## Requirements
 
@@ -140,13 +140,13 @@ Angular’s lifecycle hooks embody the Template Method pattern, with the framewo
 
 SCSS (Sass) adheres to the DRY (Don’t Repeat Yourself) principle, facilitating the development of maintainable and scalable styles.
 
-## Rendering Data Table
+## Rendering data table
 
 The application frequently receives data via a pseudo-socket, necessitating performance optimizations to ensure seamless functionality.
 
-### General Techniques
+### General techniques
 
-#### Utilizing `ChangeDetectionStrategy.OnPush` in All Components
+#### Utilizing `ChangeDetectionStrategy.OnPush` in all components
 
 This strategy mitigates unnecessary UI updates and optimizes the total number of such updates, enhancing the performance of the application.
 
@@ -154,11 +154,11 @@ This strategy mitigates unnecessary UI updates and optimizes the total number of
 
 By employing RxJS operators, the application can control the rate at which view rendering occurs, thus offering an optimized and efficient way to handle high-frequency data changes. The `throttleTime` operator limits the frequency of emitted events, while `distinctUntilChanged` ensures that only distinct, non-consecutive values are emitted, reducing the load on the rendering mechanism.
 
-### Rendering Approaches
+### Rendering approaches
 
 There are two prevalent approaches to rendering components subjected to high-frequency data alterations:
 
-#### Angular Binding
+#### Angular binding
 
 This method leverages Angular's binding feature to exhibit tables as depicted below:
 
@@ -178,7 +178,7 @@ Coupled with the trackBy function, it enhances Angular’s performance in tracki
 
 This approach was choosen due to its benefits in development speed, maintainability, and readability. It proficiently accommodates up to 10 items in the list, especially when enhanced with `throttleTime` and `distinctUntilChanged` pipes. This method serves the current scope effectively. However, as the application grows, if there’s a necessity to render a more extensive list of items, or if there are changes in requirements necessitating advanced performance optimizations, transitioning to a manual rendering approach would be necessary. This transition would allow for more granular control and optimization, ensuring seamless user experience regardless of the data volume or frequency of updates.
 
-#### Manual Rendering
+#### Manual rendering
 
 This concept revolves around preemptively creating 10 rows and all required columns in the HTML template before the commencement of data reception. Initially, these rows are hidden. Crucially, we abstain from recreating them with each alteration in data; instead, we focus on updating the text and styles of specific columns.
 
